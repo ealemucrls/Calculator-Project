@@ -3,17 +3,21 @@ function add(a,b){
     return sum; 
 }
 
-function subtract(c,d){
-    let sum = c - d;
+function subtract(a,b){
+    let sum = a - b;
     return sum;
 }
 
-function multiply(e,f){
-    let sum = f * e;
+function multiply(a,b){
+    let sum = a * b;
     return sum;
 }
 
-function division(g, h){
-    let sum = g / h;
+function division(a, b){
+    let sum = a / b;
     return sum; 
+}
+
+function operate(operator, a, b){
+
 }
