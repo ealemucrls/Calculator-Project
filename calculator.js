@@ -35,7 +35,7 @@ function operate(operators, a, b){
     }
 }
 
-let operatorz = '';
+let operator = '';
 let previousValue = '';
 let currentValue = '';
 
@@ -48,14 +48,37 @@ document.addEventListener("DOMContentLoaded", function() {
     let numbers = document.querySelectorAll(".digit");
     let operators = document.querySelectorAll(".operator");
 
-    let previouScreen = document.querySelector(".previous");
+    let previousScreen = document.querySelector(".previous");
     let currentScreen = document.querySelector(".current");
 
     numbers.forEach((digit) => digit.addEventListener("click", function(s){
         handleNumber(s.target.textContent);
-    }))
-})
+        currentScreen.textContent = currentValue;
+    }));
+
+    operators.forEach((op) => op.addEventListener(("click"), function(s){
+        handleOperator(s.target.textContent);
+        previousScreen.textContent = previousValue + " " + operator;
+    }));
+    
+    clear.addEventListener("click", function(){
+        previousValue = '';
+        currentValue = '';
+        operator = '';
+        previousScreen.textContent = currentValue;
+        currentScreen.textContent = currentValue;
+    })
+});
 
 function handleNumber(num){
-    console.log(num);
+    if(currentValue.length <= 10){
+        currentValue += num;
+    }
+}
+
+function handleOperator(op){
+    operator = op;
+    previousValue = currentValue;
+    currentValue = '';
+    
 }
