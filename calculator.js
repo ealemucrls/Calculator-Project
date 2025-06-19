@@ -19,7 +19,7 @@ function division(a, b){
 }
 
 
-function operate(operator, a, b){
+function operate(operators, a, b){
     let operator = operator.toLowerCase();
     if(operator.equals("add")){
         add(a, b);
@@ -34,8 +34,28 @@ function operate(operator, a, b){
         division(a,b);
     }
 }
-    
 
-   
+let operatorz = '';
+let previousValue = '';
+let currentValue = '';
 
 
+document.addEventListener("DOMContentLoaded", function() {
+    let clear = document.querySelector("#clear");
+    let equal = document.querySelector(".equals");
+    let decimal = document.querySelector(".decimal");
+
+    let numbers = document.querySelectorAll(".digit");
+    let operators = document.querySelectorAll(".operator");
+
+    let previouScreen = document.querySelector(".previous");
+    let currentScreen = document.querySelector(".current");
+
+    numbers.forEach((digit) => digit.addEventListener("click", function(s){
+        handleNumber(s.target.textContent);
+    }))
+})
+
+function handleNumber(num){
+    console.log(num);
+}
