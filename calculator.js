@@ -1,39 +1,3 @@
-function add(a,b){
-    let sum = a + b;
-    return sum; 
-}
-
-function subtract(a,b){
-    let sum = a - b;
-    return sum;
-}
-
-function multiply(a,b){
-    let sum = a * b;
-    return sum;
-}
-
-function division(a, b){
-    let sum = a / b;
-    return sum; 
-}
-
-
-function operate(operators, a, b){
-    let operator = operator.toLowerCase();
-    if(operator.equals("add")){
-        add(a, b);
-    }
-    else if(operator.equals("subtract")){
-        subtract(a,b);
-    }
-    else if(operator.equals("multiply")){
-        multiply(a,b);
-    }
-    else if(operator.equals("division")){
-        division(a,b);
-    }
-}
 
 let operator = '';
 let previousValue = '';
@@ -59,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
     operators.forEach((op) => op.addEventListener(("click"), function(s){
         handleOperator(s.target.textContent);
         previousScreen.textContent = previousValue + " " + operator;
+        currentScreen.textContent = currentValue;
     }));
     
     clear.addEventListener("click", function(){
@@ -67,6 +32,12 @@ document.addEventListener("DOMContentLoaded", function() {
         operator = '';
         previousScreen.textContent = currentValue;
         currentScreen.textContent = currentValue;
+    })
+
+    equal.addEventListener("click", function(){
+        operate();
+        previousScreen.textContent = '';
+        currentScreen.textContent = previousValue;
     })
 });
 
@@ -81,4 +52,33 @@ function handleOperator(op){
     previousValue = currentValue;
     currentValue = '';
     
+}
+
+
+
+function operate(){
+    previousValue = Number(previousValue);
+    currentValue = Number(currentValue);
+    
+    if(operator === "+"){
+        previousValue += currentValue 
+    }
+    else if(operator === "-"){
+        previousValue -= currentValue;
+    }
+    else if(operator === "x"){
+        previousValue *= currentValue;
+    }
+    else if(operator === "/"){
+        previousValue /= currentValue;
+    }
+
+    previousValue = roundNumber(previousValue);
+    console.log(previousValue);
+    previousValue = previousValue.toString();
+    currentValue = previousValue.toString();
+}
+
+function roundNumber(num){
+    return Math.round(num * 1000) / 1000;
 }
